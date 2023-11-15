@@ -18,8 +18,8 @@ public class CoffeDay implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "date", nullable = false)
-    private LocalDate date;
+    @Column(name = "coffeDate", nullable = false)
+    private LocalDate coffeDate;
 
     @JoinTable(name = "tb_user_coffe",
             joinColumns = @JoinColumn(name = "coffe_id"),
@@ -41,12 +41,12 @@ public class CoffeDay implements Serializable {
         this.id = id;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDate getCoffeDatee() {
+        return coffeDate;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setCoffeDate(LocalDate coffeDate) {
+        this.coffeDate = coffeDate;
     }
 
     public Set<User> getUser() {
@@ -78,7 +78,7 @@ public class CoffeDay implements Serializable {
     public String toString() {
         return "CoffeDay{" +
                 "id=" + id +
-                ", date=" + date +
+                ", coffeDate=" + coffeDate +
                 ", user=" + user +
                 ", item=" + item +
                 '}';
