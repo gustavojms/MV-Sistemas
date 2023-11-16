@@ -4,9 +4,7 @@ import jakarta.persistence.*;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "TB_USER")
@@ -25,8 +23,8 @@ public class User implements Serializable {
     @Column(name = "cpf", nullable = false, unique = true, length = 11)
     private String cpf;
 
-    @ManyToMany(mappedBy = "user")
-    private Set<CoffeDay> coffeDay = new HashSet<>();
+    @ManyToMany(mappedBy = "users")
+    private Set<CoffeeDay> coffeDay = new HashSet<>();
 
     public long getId() {
         return id;
@@ -52,7 +50,7 @@ public class User implements Serializable {
         this.cpf = cpf;
     }
 
-    public Set<CoffeDay> getCoffeDay() {
+    public Set<CoffeeDay> getCoffeDay() {
         return coffeDay;
     }
 

@@ -21,14 +21,6 @@ public class ItemOption implements Serializable {
     @Column(name = "item", nullable = false)
     private String item;
 
-    @Column(name = "bring_item")
-    private boolean bringItem;
-
-    @ManyToOne
-    @JoinColumn(name = "coffe_id")
-    @JsonIgnore
-    private CoffeDay coffeDay;
-
     public Long getId() {
         return id;
     }
@@ -43,14 +35,6 @@ public class ItemOption implements Serializable {
 
     public void setItem(String item) {
         this.item = item;
-    }
-
-    public boolean isBringItem() {
-        return bringItem;
-    }
-
-    public void setBringItem(boolean bringItem) {
-        this.bringItem = bringItem;
     }
 
     @Override
