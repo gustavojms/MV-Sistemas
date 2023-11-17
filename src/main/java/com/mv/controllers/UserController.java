@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
+@CrossOrigin(origins = "*")
 public class UserController {
 
     @Autowired
@@ -20,7 +21,7 @@ public class UserController {
     @PostMapping
     public ResponseEntity<String> insert(@Valid @RequestBody UserDto userDto) {
         this.userService.save(userDto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(userDto.getName() + " criado com sucesso!");
+        return ResponseEntity.status(HttpStatus.CREATED).body("O usuário foi cadastrado com sucesso!");
     }
 
     @GetMapping("/{cpf}")
