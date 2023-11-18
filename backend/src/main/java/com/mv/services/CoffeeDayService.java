@@ -1,11 +1,13 @@
 package com.mv.services;
 
 import com.mv.dtos.CoffeeDayDto;
+import com.mv.models.CoffeeDay;
 import com.mv.repositories.CoffeeDayRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,7 +22,7 @@ public class CoffeeDayService {
     }
 
     @Transactional
-    public void insertCoffeeDay(CoffeeDayDto coffeeDayDto) {
+    public CoffeeDayDto insertCoffeeDay(CoffeeDayDto coffeeDayDto) {
         LocalDate currentDate = LocalDate.now();
 
         if (coffeeDayDto.getCoffeeDate().isBefore(currentDate)) {
@@ -28,15 +30,22 @@ public class CoffeeDayService {
         }
 
         this.coffeDayRepository.insertCoffeeDate(coffeeDayDto.getCoffeeDate());
+        CoffeeDay coffeeDay = this.coffeDayRepository.findByCoffeeDate(coffeeDayDto.getCoffeeDate());
+        return new CoffeeDayDto(coffeeDay.getId(), coffeeDay.getCoffeeDate());
     }
 
     @Transactional
-    public void associateUserWithCoffeDay(Long coffeeId, Long userId) {
-        this.coffeDayRepository.associateUserToCoffee(coffeeId, userId);
-    }
+    public List<CoffeeDayDto> findAllCoffeeDays() {
+        List<CoffeeDay> coffeeDays = this.coffeDayRepository.findAllCoffeeDays();
+        List<CoffeeDayDto> coffeeDaysDto = new ArrayList<>();
 
-    @Transactional
-    public Date findAllCoffeeDays() {
-        return this.coffeDayRepository.findAllCoffeeDays();
+        for (CoffeeDay coffeeDay : coffeeDays) {
+            CoffeeDayDto coffeeDayDto = new CoffeeDayDto();
+            coffeeDayDto.setId(coffeeDay.getId());
+            coffeeDayDto.setCoffeeDate(coffeeDay.getCoffeeDate());
+            coffeeDaysDto.add(coffeeDayDto);
+        }
+
+        return coffeeDaysDto;
     }
 }

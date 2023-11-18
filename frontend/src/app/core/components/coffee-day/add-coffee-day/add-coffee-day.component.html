@@ -1,0 +1,24 @@
+<div class="w-[500px]">
+  <form [formGroup]="formCoffeeDay" (ngSubmit)="onSubmit()">
+    <h1 mat-dialog-title>Adicionar novo Dia do Café</h1>
+    <mat-dialog-content class="w-full">
+      <div class="flex">
+        <mat-form-field class="w-full">
+          <mat-label>Data do café</mat-label>
+          <input
+            matInput
+            id="coffeeDate"
+            type="date"
+            [ngModel]="coffeeDate"
+            (ngModelChange)="coffeeDate = $event"
+            formControlName="coffeeDate"
+          />
+        </mat-form-field>
+      </div>
+    </mat-dialog-content>
+    <mat-dialog-actions class="flex gap-2 float-right">
+      <button type="submit" class="p-2 px-2 bg-custom-teal rounded text-white">Salvar</button>
+      <button class="p-2 px-2 rounded shadow" mat-dialog-close>Cancelar</button>
+    </mat-dialog-actions>
+  </form>
+</div>

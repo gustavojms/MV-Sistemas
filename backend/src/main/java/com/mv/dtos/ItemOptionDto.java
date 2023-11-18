@@ -1,7 +1,5 @@
 package com.mv.dtos;
 
-import java.time.LocalDate;
-
 public class ItemOptionDto {
 
     private Long id;

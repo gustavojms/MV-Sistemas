@@ -1,8 +1,14 @@
-<div class="max-w-lg">
+<mat-card class="p-10">
+  <div class="flex justify-between mb-4">
+    <h1 class="text-2xl font-bold">Colaboradores</h1>
+    <button  class="mt-2 bg-custom-teal p-2 px-2 rounded-lg text-white font-medium" (click)="openNewColaborator()">
+      Adicionar colaborador
+    </button>
+  </div>
   <table
     mat-table
     [dataSource]="dataSource"
-    class="mat-elevation-z8 demo-table max-w-lg"
+    class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg w-full"
   >
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef>NOME</th>
@@ -20,7 +26,7 @@
         <button mat-icon-button color="primary" (click)="openEditColaborator(row)">
           <mat-icon>edit</mat-icon>
         </button>
-        <button mat-icon-button color="warn" (click)="deleteColaborator(row.id)">
+        <button mat-icon-button color="warn" (click)="confirmDelete(row)">
           <mat-icon>delete</mat-icon>
         </button>
       </td>
@@ -28,4 +34,4 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
-</div>
+</mat-card>

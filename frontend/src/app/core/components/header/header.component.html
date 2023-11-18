@@ -1,9 +1,14 @@
-<p>
-  <mat-toolbar class="toolbar">
-    <span class="text-3xl">MV</span>
+  <mat-toolbar class="bg-black">
+    <span class="text-3xl">Desafio Unidac</span>
     <span class="example-spacer"></span>
-    <button (click)="openDialog()" class="bg-custom-teal text-white p-2 px-3 rounded-lg text-base" aria-label="Botão para adicionar um novo colaborador">
-      Adicionar Colaborador
-    </button>
+    <nav>
+      <ul class="flex gap-2 text-base">
+        <li>
+          <a routerLink="/" routerLinkActive="active">Página inicial</a>
+        </li>
+        <li>
+          <a routerLink="/coffeeday" routerLinkActive="active">Coffee Day</a>
+        </li>
+      </ul>
+    </nav>
   </mat-toolbar>
-</p>

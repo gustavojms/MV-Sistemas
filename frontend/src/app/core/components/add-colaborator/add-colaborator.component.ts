@@ -26,7 +26,6 @@ export class AddColaboratorComponent {
 
   onSubmit() {
     return this.api.postNewColaborator(this.formColaborator.value).subscribe((response: any) => {
-      console.log(response);
       if (response.status === 201) {
         this.toastr.success('Colaborador cadastrado com sucesso!');
       } else {

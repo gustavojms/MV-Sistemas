@@ -4,10 +4,12 @@ import com.mv.dtos.CoffeeDayDto;
 import com.mv.models.CoffeeDay;
 import com.mv.services.CoffeeDayService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -17,14 +19,15 @@ public class CoffeeDayController {
     @Autowired
     private CoffeeDayService coffeeDayService;
 
-    @PostMapping("/create")
-    public ResponseEntity<String> createCoffeDay(@RequestBody CoffeeDayDto coffeDayDto) {
-        coffeeDayService.insertCoffeeDay(coffeDayDto);
-        return ResponseEntity.ok("Um novo CoffeDay foi criado com sucesso!");
+    @PostMapping
+    public ResponseEntity<CoffeeDayDto> createCoffeDay(@RequestBody CoffeeDayDto coffeDayDto) {
+        CoffeeDayDto coffeeDay = coffeeDayService.insertCoffeeDay(coffeDayDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(coffeeDay);
     }
 
-    @GetMapping("/all")
-    public ResponseEntity<String> findAllCoffeeDays() {
-        return ResponseEntity.ok(coffeeDayService.findAllCoffeeDays().toString());
+    @GetMapping
+    public ResponseEntity<List<CoffeeDayDto>> findAllCoffeeDays() {
+        List<CoffeeDayDto> coffeeDays = coffeeDayService.findAllCoffeeDays();
+        return ResponseEntity.status(HttpStatus.OK).body(coffeeDays);
     }
 }

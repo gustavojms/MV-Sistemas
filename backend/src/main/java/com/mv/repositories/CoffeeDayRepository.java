@@ -20,16 +20,10 @@ public interface CoffeeDayRepository extends JpaRepository<CoffeeDay, Long> {
     @Query(value = "INSERT INTO TB_COFFEE (COFFEE_DATE) VALUES (:coffeeDate)", nativeQuery = true)
     void insertCoffeeDate(LocalDate coffeeDate);
 
-    @Modifying
-    @Query(value = "INSERT INTO TB_USER_COFFEE (COFFEE_ID, USER_ID) VALUES (:coffeeId, :userId)", nativeQuery = true)
-    void associateUserToCoffee(Long coffeeId, Long userId);
+    @Query(value = "SELECT * FROM TB_COFFEE", nativeQuery = true)
+    List<CoffeeDay> findAllCoffeeDays();
 
-    @Modifying
-    @Query(value = "SELECT COUNT(*) FROM tb_user_coffee WHERE coffee_id = :coffeeId AND user_id = :userId", nativeQuery = true)
-    int countUserBringingItem(Long coffeeId, Long userId);
-
-
-    @Query(value = "SELECT COFFEE_DATE FROM TB_COFFEE", nativeQuery = true)
-    Date findAllCoffeeDays();
+    @Query(value = "SELECT * FROM TB_COFFEE WHERE COFFEE_DATE = :coffeeDate", nativeQuery = true)
+    CoffeeDay findByCoffeeDate(LocalDate coffeeDate);
 
 }
