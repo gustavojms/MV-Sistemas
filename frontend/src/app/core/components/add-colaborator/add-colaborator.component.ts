@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { ColaboratorService } from '../../../services/colaborator.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-colaborator',
@@ -16,7 +17,7 @@ import { ColaboratorService } from '../../../services/colaborator.service';
   styleUrl: './add-colaborator.component.css'
 })
 export class AddColaboratorComponent {
-  constructor(private fb: FormBuilder, private api: ColaboratorService) { }
+  constructor(private fb: FormBuilder, private api: ColaboratorService, private toastr: ToastrService) { }
   
   formColaborator = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -24,6 +25,13 @@ export class AddColaboratorComponent {
   })
 
   onSubmit() {
-    this.api.postNewColaborator(this.formColaborator.value);
+    return this.api.postNewColaborator(this.formColaborator.value).subscribe((response: any) => {
+      console.log(response);
+      if (response.status === 201) {
+        this.toastr.success('Colaborador cadastrado com sucesso!');
+      } else {
+        this.toastr.error('Erro ao cadastrar colaborador!');
+      }
+    });
   }
 }

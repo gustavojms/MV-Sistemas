@@ -1,0 +1,23 @@
+<div class="w-[500px]">
+  <form [formGroup]="editFormColaborator" (ngSubmit)="onSubmit()">
+  <h1 mat-dialog-title>Editar colaborador</h1>
+<mat-dialog-content class="w-full">
+  <div class="flex">
+    <mat-form-field class="w-full">
+      <mat-label>Nome do colaborador</mat-label>
+      <input id="name" formControlName="name" matInput required/>
+    </mat-form-field>
+  </div>
+  <div class="flex">
+  <mat-form-field class="w-full">
+    <mat-label>CPF do colaborador</mat-label>
+    <input id="cpf" formControlName="cpf" matInput maxlength="11" required/>
+  </mat-form-field>
+</div>
+</mat-dialog-content>
+<mat-dialog-actions class="flex gap-2 float-right">
+  <button class="p-2 px-2 bg-custom-teal rounded text-white">Salvar</button>
+  <button class="p-2 px-2 rounded shadow">Cancelar</button>
+</mat-dialog-actions>
+</form>
+</div>

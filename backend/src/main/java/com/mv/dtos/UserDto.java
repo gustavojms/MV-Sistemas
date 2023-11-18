@@ -7,7 +7,6 @@ import java.util.List;
 
 public class UserDto {
 
-
     private Long id;
 
     @NotBlank(message = "O nome do colaborador é obrigatório!")
@@ -17,13 +16,11 @@ public class UserDto {
     @NotBlank(message = "O CPF do colaborador é obrigatório!")
     private String cpf;
 
-    private List<ItemOptionDto> itemOptions;
 
-    public UserDto(Long id, String name, String cpf, List<ItemOptionDto> itemOptions) {
+    public UserDto(Long id, String name, String cpf) {
         this.id = id;
         this.name = name;
         this.cpf = cpf;
-        this.itemOptions = itemOptions;
     }
 
     public UserDto() {}
@@ -52,11 +49,4 @@ public class UserDto {
         this.cpf = cpf;
     }
 
-    public List<ItemOptionDto> getItemOptions() {
-        return itemOptions;
-    }
-
-    public void setItemOptions(List<ItemOptionDto> itemOptions) {
-        this.itemOptions = itemOptions;
-    }
 }
