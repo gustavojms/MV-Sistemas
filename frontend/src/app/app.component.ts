@@ -20,5 +20,5 @@ import { AddItemComponent } from './core/components/item-option/add-item/add-ite
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  title = 'frontend';
+  title = 'Desafio Unidac';
 }

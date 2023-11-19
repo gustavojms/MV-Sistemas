@@ -5,6 +5,7 @@ import com.mv.services.ItemAssignmentService;
 import com.mv.services.ItemOptionService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,9 +20,10 @@ public class ItemAssignmentController {
     private ItemAssignmentService itemAssignmentService;
 
     @PostMapping
-    public ResponseEntity<String> insertItemAssignment(@Valid @RequestBody ItemAssignmentDto itemAssignmentDto) {
+    public ResponseEntity<ItemAssignmentDto> insertItemAssignment(@Valid @RequestBody ItemAssignmentDto itemAssignmentDto) {
+        System.out.println(itemAssignmentDto);
         itemAssignmentService.insertItemAssignment(itemAssignmentDto);
-        return ResponseEntity.ok("Iten(s) associado(s) ao usuário e ao CoffeeDay com sucesso!");
+        return ResponseEntity.status(HttpStatus.CREATED).body(itemAssignmentDto);
     }
 
     @PutMapping

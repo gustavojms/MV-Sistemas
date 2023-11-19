@@ -12,17 +12,15 @@ public class ItemAssignmentDto {
     @NotNull(message = "O ID do dia de café é obrigatório")
     private Long coffeeDayId;
 
-    private Long itemId;
+    private List<Long> itemId;
 
-    private List<Long> itemIds;
 
     private boolean hasBroughtItem;
 
-    public ItemAssignmentDto(Long userId, Long coffeeDayId, Long itemId, List<Long> itemIds, boolean hasBroughtItem) {
+    public ItemAssignmentDto(Long userId, Long coffeeDayId, List<Long> itemId, boolean hasBroughtItem) {
         this.userId = userId;
         this.coffeeDayId = coffeeDayId;
         this.itemId = itemId;
-        this.itemIds = itemIds;
         this.hasBroughtItem = hasBroughtItem;
     }
 
@@ -44,20 +42,12 @@ public class ItemAssignmentDto {
         this.coffeeDayId = coffeeDayId;
     }
 
-    public Long getItemId() {
+    public List<Long> getItemId() {
         return itemId;
     }
 
-    public void setItemId(Long itemId) {
+    public void setItemId(List<Long> itemId) {
         this.itemId = itemId;
-    }
-
-    public List<Long> getItemIds() {
-        return itemIds;
-    }
-
-    public void setItemIds(List<Long> itemIds) {
-        this.itemIds = itemIds;
     }
 
     public boolean isHasBroughtItem() {

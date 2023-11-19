@@ -1,12 +1,15 @@
 package com.mv.services;
 
 import com.mv.dtos.ItemAssignmentDto;
+import com.mv.models.ItemAssignment;
 import com.mv.repositories.ItemAssignmentRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -16,20 +19,22 @@ public class ItemAssignmentService {
     private ItemAssignmentRepository itemAssignmentRepository;
 
     @Transactional
-    public void insertItemAssignment(ItemAssignmentDto itemAssignmentDto) {
-        if (itemAssignmentDto.getItemIds() != null && !itemAssignmentDto.getItemIds().isEmpty()) {
-            for (Long itemId : itemAssignmentDto.getItemIds()) {
-                if (itemAssignmentRepository.existsItemAssignment(itemAssignmentDto.getUserId(), itemId, itemAssignmentDto.getCoffeeDayId())) {
-                    throw new RuntimeException("O usuário já possui este item associado a ele!");
-                }
-                itemAssignmentRepository.insertItemAssignment(itemAssignmentDto.getUserId(), itemId, itemAssignmentDto.getCoffeeDayId());
-            }
-        } else {
-            if (itemAssignmentRepository.existsItemAssignment(itemAssignmentDto.getUserId(), itemAssignmentDto.getItemId(), itemAssignmentDto.getCoffeeDayId())) {
+    public ItemAssignmentDto insertItemAssignment(ItemAssignmentDto itemAssignmentDto) {
+        for (Long itemId : itemAssignmentDto.getItemId()) {
+            if (itemAssignmentRepository.existsItemAssignment(itemAssignmentDto.getUserId(), itemId, itemAssignmentDto.getCoffeeDayId())) {
                 throw new RuntimeException("O usuário já possui este item associado a ele!");
             }
-            itemAssignmentRepository.insertItemAssignment(itemAssignmentDto.getUserId(), itemAssignmentDto.getItemId(), itemAssignmentDto.getCoffeeDayId());
+            itemAssignmentRepository.insertItemAssignment(itemAssignmentDto.getUserId(), itemId, itemAssignmentDto.getCoffeeDayId());
         }
+
+        ItemAssignment itemAssignment = itemAssignmentRepository.findItemAssignmentByUserIdAndCoffeeDayId(
+                itemAssignmentDto.getUserId(), itemAssignmentDto.getCoffeeDayId());
+
+        ItemAssignmentDto resultDto = new ItemAssignmentDto();
+        resultDto.setUserId(itemAssignment.getUser().getId());
+        resultDto.setCoffeeDayId(itemAssignment.getCoffeeDay().getId());
+
+        return resultDto;
     }
 
     @Transactional

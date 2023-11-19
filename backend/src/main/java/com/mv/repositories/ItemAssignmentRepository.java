@@ -26,4 +26,7 @@ public interface ItemAssignmentRepository extends JpaRepository<ItemAssignment, 
     @Query(value = "SELECT CASE WHEN COUNT(*) > 0 THEN 'TRUE' ELSE 'FALSE' END FROM TB_ITEM_ASSIGNMENT WHERE USER_ID = :userId AND ITEM_ID = :itemId AND COFFEE_DAY_ID = :coffeeDayId", nativeQuery = true)
     boolean existsItemAssignment(Long userId, Long itemId, Long coffeeDayId);
 
+    @Query(value = "SELECT * FROM TB_ITEM_ASSIGNMENT WHERE USER_ID = :userId AND COFFEE_DAY_ID = :coffeeDayId", nativeQuery = true)
+    ItemAssignment findItemAssignmentByUserIdAndCoffeeDayId(Long userId, Long coffeeDayId);
+
 }
