@@ -48,4 +48,9 @@ public class CoffeeDayService {
 
         return coffeeDaysDto;
     }
+
+    @Transactional
+    public CoffeeDay findCoffeeDayById(Long id) {
+        return this.coffeDayRepository.findCoffeeDayById(id);
+    }
 }

@@ -15,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/item-option")
+@CrossOrigin(origins = "*")
 public class ItemOptionController {
 
     @Autowired

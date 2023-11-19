@@ -26,4 +26,7 @@ public interface CoffeeDayRepository extends JpaRepository<CoffeeDay, Long> {
     @Query(value = "SELECT * FROM TB_COFFEE WHERE COFFEE_DATE = :coffeeDate", nativeQuery = true)
     CoffeeDay findByCoffeeDate(LocalDate coffeeDate);
 
+    @Query(value = "SELECT * FROM TB_COFFEE WHERE ID = :id", nativeQuery = true)
+    CoffeeDay findCoffeeDayById(Long id);
+
 }

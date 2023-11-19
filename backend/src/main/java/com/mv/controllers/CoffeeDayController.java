@@ -14,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/coffee-day")
+@CrossOrigin(origins = "*")
 public class CoffeeDayController {
 
     @Autowired
@@ -29,5 +30,11 @@ public class CoffeeDayController {
     public ResponseEntity<List<CoffeeDayDto>> findAllCoffeeDays() {
         List<CoffeeDayDto> coffeeDays = coffeeDayService.findAllCoffeeDays();
         return ResponseEntity.status(HttpStatus.OK).body(coffeeDays);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<CoffeeDayDto> findCoffeeDayById(@PathVariable Long id) {
+        CoffeeDay coffeeDay = coffeeDayService.findCoffeeDayById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(new CoffeeDayDto(coffeeDay.getId(), coffeeDay.getCoffeeDate()));
     }
 }
