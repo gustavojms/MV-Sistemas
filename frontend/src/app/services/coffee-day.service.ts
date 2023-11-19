@@ -15,14 +15,18 @@ export class CoffeeDayService {
     });
   }
 
+  getCoffeeDayById(id: number) {
+    return this.http.get(`http://localhost:8080/coffee-day/${id}`, {
+      observe: 'response',
+    });
+  }
+
   postNewCoffeeDay(data: any) {
+    console.log(data)
     return this.http.post(
       'http://localhost:8080/coffee-day',
       {
-        day: data.day,
-        name: data.name,
-        cpf: data.cpf,
-        brought: data.brought,
+        coffeeDate: data
       },
       {
         observe: 'response',

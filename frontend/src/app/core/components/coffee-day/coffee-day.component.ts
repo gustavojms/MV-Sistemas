@@ -7,6 +7,7 @@ import { CoffeeDayService } from '../../../services/coffee-day.service';
 import { AddCoffeeDayComponent } from './add-coffee-day/add-coffee-day.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CoffeeDetailsComponent } from './coffee-details/coffee-details.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-coffee-day',
@@ -19,7 +20,7 @@ export class CoffeeDayComponent implements AfterViewInit {
   displayedColumns: string[] = ['date', 'actions'];
   coffeeDatasource: any;
 
-  constructor(private api: CoffeeDayService, public dialog: MatDialog) { }
+  constructor(private api: CoffeeDayService, public dialog: MatDialog, private route: Router) { }
 
   ngAfterViewInit(): any {
     return this.api.getCoffeeDays().subscribe((response: any) => {
@@ -36,15 +37,6 @@ export class CoffeeDayComponent implements AfterViewInit {
   }
 
   openCoffeeDetails(data: any) {
-    const dialogRef = this.dialog.open(CoffeeDetailsComponent, {
-      data: {
-        coffeeId: data.id,
-        coffeeDay: data.coffeeDate,
-      },
-    });
-
-    dialogRef.afterClosed().subscribe(() => {
-      this.ngAfterViewInit();
-    });
+    this.route.navigate(['/coffeeday', data.id]);
   }
 }

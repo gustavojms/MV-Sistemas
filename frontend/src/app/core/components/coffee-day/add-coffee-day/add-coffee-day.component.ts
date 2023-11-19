@@ -1,26 +1,14 @@
 import { MatInputModule } from '@angular/material/input';
-import { Component, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatDialogModule } from '@angular/material/dialog';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {
-  MatDatepickerControl,
-  MatDatepickerModule,
-  MatDatepickerPanel,
-} from '@angular/material/datepicker';
 import { CoffeeDayService } from '../../../../services/coffee-day.service';
 import { ToastrService } from 'ngx-toastr';
 import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
   selector: 'app-add-coffee-day',
@@ -31,8 +19,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
     MatIconModule,
     ReactiveFormsModule,
   ],
@@ -42,12 +28,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 })
 export class AddCoffeeDayComponent {
   coffeeDate: Date;
-  constructor(
-    @Inject(MAT_DATE_LOCALE) private dateLocale: string,
-    private fb: FormBuilder,
-    private api: CoffeeDayService,
-    private toastr: ToastrService
-  ) {
+  constructor(private api: CoffeeDayService, private toastr: ToastrService) {
     this.coffeeDate = new Date();
   }
 
@@ -56,15 +37,13 @@ export class AddCoffeeDayComponent {
   });
 
   onSubmit() {
-    console.log(this.coffeeDate.toISOString());
-    console.log(this.coffeeDate);
     return this.api
-      .postNewCoffeeDay(this.coffeeDate.toISOString())
+      .postNewCoffeeDay(this.coffeeDate)
       .subscribe((response: any) => {
         if (response.status === 201) {
           this.toastr.success('Dia do Café cadastrado com sucesso!');
         } else {
-          this.toastr.error('Erro ao cadastrar café!');
+          this.toastr.error('Erro ao cadastrar dia do café!');
         }
       });
   }
