@@ -1,13 +1,13 @@
 import { AfterViewInit, Component, OnChanges, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ColaboratorService } from '../../../services/colaborator.service';
+import { ColaboratorService } from '../../../../services/colaborator.service';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { EditColaboratorComponent } from '../edit-colaborator/edit-colaborator.component';
 import { ToastrService } from 'ngx-toastr';
 import {MatCardModule} from '@angular/material/card';
-import { ConfirmDeleteComponent } from '../confirm-delete/confirm-delete.component';
+import { ConfirmDeleteComponent } from '../../confirm-delete/confirm-delete.component';
 import { AddColaboratorComponent } from '../add-colaborator/add-colaborator.component';
 
 @Component({

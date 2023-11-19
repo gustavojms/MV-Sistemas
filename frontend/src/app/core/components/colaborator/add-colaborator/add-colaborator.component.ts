@@ -6,7 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
-import { ColaboratorService } from '../../../services/colaborator.service';
+import { ColaboratorService } from '../../../../services/colaborator.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({

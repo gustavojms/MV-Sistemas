@@ -11,7 +11,7 @@ export class ItemOptionService {
 
   postNewItemOption(data: any) {
     return this.http.post(
-      'http://localhost:8080/item-ption',
+      'http://localhost:8080/item-option',
       {
         item: data.item,
       },
