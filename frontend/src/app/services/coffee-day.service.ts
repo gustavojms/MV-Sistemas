@@ -57,4 +57,29 @@ export class CoffeeDayService {
       observe: 'response',
     });
   }
+
+  getColaboratorsAndItemsByCoffeeDayId(id: number) {
+    return this.http.get(`http://localhost:8080/item-assignment/${id}`, {
+      observe: 'response',
+    });
+  }
+
+  getCoffeeDetailsByCoffeeDayIdAndUserId(coffeeDayId: number) {
+    return this.http.get(
+      `http://localhost:8080/item-assignment/items/${coffeeDayId}`,
+      { observe: 'response' }
+    );
+  }
+
+  updateBroughtStatus(data: any) {
+    return this.http.put(
+      `http://localhost:8080/item-assignment`,
+      {
+        userId: data.userId,
+        coffeeDayId: data.coffeeDayId,
+        hasBroughtItem: data.hasBroughtItem,
+      },
+      { observe: 'response' }
+    );
+  }
 }

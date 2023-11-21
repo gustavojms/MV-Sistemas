@@ -17,16 +17,16 @@ import java.util.Optional;
 public interface CoffeeDayRepository extends JpaRepository<CoffeeDay, Long> {
 
     @Modifying
-    @Query(value = "INSERT INTO TB_COFFEE (COFFEE_DATE) VALUES (:coffeeDate)", nativeQuery = true)
+    @Query(value = "INSERT INTO TB_COFFEE_DAY (COFFEE_DATE) VALUES (:coffeeDate)", nativeQuery = true)
     void insertCoffeeDate(LocalDate coffeeDate);
 
-    @Query(value = "SELECT * FROM TB_COFFEE", nativeQuery = true)
+    @Query(value = "SELECT * FROM TB_COFFEE_DAY", nativeQuery = true)
     List<CoffeeDay> findAllCoffeeDays();
 
-    @Query(value = "SELECT * FROM TB_COFFEE WHERE COFFEE_DATE = :coffeeDate", nativeQuery = true)
+    @Query(value = "SELECT * FROM TB_COFFEE_DAY WHERE COFFEE_DATE = :coffeeDate", nativeQuery = true)
     CoffeeDay findByCoffeeDate(LocalDate coffeeDate);
 
-    @Query(value = "SELECT * FROM TB_COFFEE WHERE ID = :id", nativeQuery = true)
+    @Query(value = "SELECT * FROM TB_COFFEE_DAY WHERE COFFEE_DAY_ID = :id", nativeQuery = true)
     CoffeeDay findCoffeeDayById(Long id);
 
 }

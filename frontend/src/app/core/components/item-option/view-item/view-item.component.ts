@@ -8,7 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { AddItemComponent } from '../add-item/add-item.component';
 import { EditItemComponent } from '../edit-item/edit-item.component';
-import { ConfirmDeleteComponent } from '../../confirm-delete/confirm-delete.component';
+import { ConfirmDeleteComponent } from '../confirm-delete/confirm-delete.component';
 
 @Component({
   selector: 'app-view-item',
@@ -40,7 +40,7 @@ export class ViewItemComponent implements AfterViewInit {
   openEditItemOption(data: any): any {
     const dialogRef = this.dialog.open(EditItemComponent, {
       data: {
-        itemOptionId: data.id,
+        itemOptionId: data.itemOptionId,
         item: data.item,
       },
     });
@@ -51,6 +51,7 @@ export class ViewItemComponent implements AfterViewInit {
   }
 
   confirmDelete(data: any) {
+    console.log(data)
     const dialog = this.dialog.open(ConfirmDeleteComponent, {
       data: {
         item: data.item,

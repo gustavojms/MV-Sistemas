@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundColor: {
-        'custom-teal': '#69a599',
+        'custom-teal': '#357f71',
         'custom-pink': '#f3e4e1',
       }
     },

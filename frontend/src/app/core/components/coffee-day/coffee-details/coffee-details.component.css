@@ -1,3 +1,45 @@
-.spacer {
-  flex: 1 1 auto;
+.mat-mdc-card {
+  box-shadow: none;
+}
+
+.mat-mdc-table {
+  background-color: #fcfcfc;
+  width: 100%;
+}
+
+.mat-column-name {
+  text-align: center;
+}
+
+.mat-column-cpf {
+  text-align: center;
+}
+
+.mat-column-item {
+  padding-right: 200px;
+  text-align: center;
+}
+
+.mat-column-brought {
+  align-items: center;
+}
+
+.mat-icon {
+  color: #67829D;
+}
+
+.mat-mdc-header-row {
+  font-family: 'Radio Canada', sans-serif;
+}
+
+.mat-mdc-row {
+  font-family: 'Radio Canada', sans-serif;
+}
+
+.mdc-checkbox--selected {
+  color: #67829D;
+}
+
+.--mdc-checkbox-selected-icon-color {
+  color: #67829D;
 }

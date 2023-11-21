@@ -27,15 +27,15 @@ public class UserService {
 
     @Transactional
     public List<UserDto> findAll() {
-        List<Object[]> results = userRepository.findAllUsers();
+        List<User> results = userRepository.findAllUsers();
         List<UserDto> users = new ArrayList<>();
 
-        for (Object[] result : results) {
-            UserDto user = new UserDto();
-            user.setId((Long) result[0]);
-            user.setName((String) result[1]);
-            user.setCpf((String) result[2]);
-            users.add(user);
+        for (User user : results) {
+            UserDto userDto = new UserDto();
+            userDto.setId(user.getUserId());
+            userDto.setName(user.getName());
+            userDto.setCpf(user.getCpf());
+            users.add(userDto);
         }
 
         return users;
@@ -45,7 +45,7 @@ public class UserService {
     public UserDto save(UserDto userDto) {
        userRepository.insertUser(userDto.getName(), userDto.getCpf());
        User user = userRepository.findByCpf(userDto.getCpf());
-       return new UserDto(user.getId(), user.getName(), user.getCpf());
+       return new UserDto(user.getUserId(), user.getName(), user.getCpf());
     }
 
     @Transactional
@@ -57,7 +57,7 @@ public class UserService {
     public UserDto updateUser(Long userId, String name, String cpf) {
         userRepository.updateUser(userId, name, cpf);
         User user = userRepository.findByCpf(cpf);
-        return new UserDto(user.getId(), user.getName(), user.getCpf());
+        return new UserDto(user.getUserId(), user.getName(), user.getCpf());
     }
 
     @Transactional

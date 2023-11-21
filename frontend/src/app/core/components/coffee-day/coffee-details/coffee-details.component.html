@@ -1,30 +1,46 @@
-<div class="w-96">
-  <div class="flex justify-between mb-4">
-    <h1 class="text-2xl font-bold">Relacione um colaborador ao Coffee Day de {{ data?.coffeeDate }}</h1>
+<div class="w-full mt-10 px-10">
+  <div class="flex justify-between">
+    <h1 class="text-2xl font-bold">Coffee Day - {{ data?.coffeeDate}}</h1>
+    <button class="text-white font-medium bg-custom-teal h-10 w-52 rounded-md" (click)="assignColaborator()">
+      Adicionar novo participante
+    </button>
   </div>
-  <form [formGroup]="formAssignment" (ngSubmit)="onSubmit()" class="flex gap-2">
-    <div class="flex gap-2">
-      <mat-form-field class="w-full">
-        <mat-label>Nome do colaborador</mat-label>
-        <mat-select [ngModel]="selectedValue" formControlName="colaboratorId" name="colaborator">
-          @for (colaborator of colaborators; track $index) {
-          <mat-option [value]="colaborator.id">{{
-            colaborator.name
-          }}</mat-option>
-          }
-        </mat-select>
-      </mat-form-field>
+  </div>
 
-      <mat-form-field class="w-full">
-        <mat-label>Item</mat-label>
-        <mat-select multiple [ngModel]="selectedValue" formControlName="itemOptionId" name="item">
-          @for (item of items; track $index) {
-          <mat-option [value]="item.id">{{ item.item }}</mat-option>
-          }
-        </mat-select>
-      </mat-form-field>
+  <mat-card class="p-10">
+  <table
+    mat-table
+    [dataSource]="datasource"
+    class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg w-full"
+  >
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>NOME</th>
+      <td mat-cell *matCellDef="let row" class="capitalize">{{ row.username }}</td>
+    </ng-container>
 
-      <button type="submit" class="p-2 px-2 bg-custom-teal rounded text-white">Salvar</button>
-    </div>
-  </form>
-</div>
+    <ng-container matColumnDef="cpf">
+      <th mat-header-cell *matHeaderCellDef>CPF</th>
+      <td mat-cell *matCellDef="let row">{{ row.cpf }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="item">
+      <th mat-header-cell *matHeaderCellDef>ITEM</th>
+      <td mat-cell *matCellDef="let row" class="capitalize">
+        <mat-select [ngModel]="selectedValue" class="bg-gray-200 p-2 rounded-lg">
+          <mat-option *ngFor="let item of filterCoffeeItemsByUserId(row.userId)" disabled>
+            {{ item.item }}
+          </mat-option>
+        </mat-select>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="brought">
+      <th mat-header-cell *matHeaderCellDef>TROUXE</th>
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox checked="{{row.hasBroughtItem === true }}" (change)="checked(row)">
+        </mat-checkbox>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>

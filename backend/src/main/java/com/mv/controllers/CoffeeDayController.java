@@ -35,6 +35,6 @@ public class CoffeeDayController {
     @GetMapping("/{id}")
     public ResponseEntity<CoffeeDayDto> findCoffeeDayById(@PathVariable Long id) {
         CoffeeDay coffeeDay = coffeeDayService.findCoffeeDayById(id);
-        return ResponseEntity.status(HttpStatus.OK).body(new CoffeeDayDto(coffeeDay.getId(), coffeeDay.getCoffeeDate()));
+        return ResponseEntity.status(HttpStatus.OK).body(new CoffeeDayDto(coffeeDay.getCoffeeDayId(), coffeeDay.getCoffeeDate()));
     }
 }

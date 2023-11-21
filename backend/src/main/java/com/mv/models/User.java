@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -17,7 +18,7 @@ public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long userId;
 
     @Column(name = "name", nullable = false, unique = true)
     private String name;
@@ -25,12 +26,15 @@ public class User implements Serializable {
     @Column(name = "cpf", nullable = false, unique = true, length = 11)
     private String cpf;
 
-    public long getId() {
-        return id;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ItemAssignment> itemAssignments;
+
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getName() {
@@ -49,25 +53,34 @@ public class User implements Serializable {
         this.cpf = cpf;
     }
 
+    public List<ItemAssignment> getItemAssignments() {
+        return itemAssignments;
+    }
+
+    public void setItemAssignments(List<ItemAssignment> itemAssignments) {
+        this.itemAssignments = itemAssignments;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id == user.id;
+        return userId == user.userId;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(userId);
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
+                "userId=" + userId +
                 ", name='" + name + '\'' +
                 ", cpf='" + cpf + '\'' +
+                ", itemAssignments=" + itemAssignments +
                 '}';
     }
 }

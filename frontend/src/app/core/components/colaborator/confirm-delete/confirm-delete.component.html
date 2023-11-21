@@ -1,0 +1,18 @@
+<div class="w-[500px]">
+  <mat-dialog-content>
+    <p>
+      Tem certeza que deseja excluir o colaborador
+      <strong>{{ data.name }}</strong
+      >?
+    </p>
+  </mat-dialog-content>
+  <mat-dialog-actions class="flex gap-2 float-right">
+    <button
+      class="p-2 px-2 bg-custom-teal rounded text-white"
+      (click)="deleteColaborator(data.userId)"
+    >
+      Excluir
+    </button>
+    <button class="p-2 px-2 rounded shadow" mat-dialog-close>Cancelar</button>
+  </mat-dialog-actions>
+</div>

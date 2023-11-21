@@ -27,6 +27,7 @@ export class EditItemComponent {
   });
 
   onSubmit() {
+    console.log(this.data)
     return this.api.editItemOption(this.data.itemOptionId, {
       item: this.editFormItemOption.value.item,
     }).subscribe((response: any) => {

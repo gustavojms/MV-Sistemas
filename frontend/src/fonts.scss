@@ -1,0 +1,12 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$Pacifico: 'Pacifico', cursive;
+
+$custom: mat.define-typography-config(
+  $font-family: Radio Canada !important,
+  $headline-1: mat.define-typography-level($Pacifico),
+  );
+  
+@include mat.typography-hierarchy($custom);

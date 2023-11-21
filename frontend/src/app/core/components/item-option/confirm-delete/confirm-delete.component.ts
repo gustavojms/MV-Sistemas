@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
-import { ColaboratorService } from '../../../services/colaborator.service';
+import { ItemOptionService } from '../../../../services/item-option.service';
 
 @Component({
   selector: 'app-confirm-delete',
@@ -12,18 +12,17 @@ import { ColaboratorService } from '../../../services/colaborator.service';
   styleUrl: './confirm-delete.component.css'
 })
 export class ConfirmDeleteComponent {
-  constructor(private api: ColaboratorService, public dialog: MatDialog, private toastr: ToastrService, @Inject(MAT_DIALOG_DATA) public data: {
-    name: string,
-    cpf: string,
-    userId: number,
+  constructor(private api: ItemOptionService, public dialog: MatDialog, private toastr: ToastrService, @Inject(MAT_DIALOG_DATA) public data: {
+    itemOptionId: number,
+    item: string,
   }) { }
 
-  deleteColaborator(id: any): any {
-    return this.api.deleteColaborator(id).subscribe((response: any) => {
+  deleteItem(id: any): any {
+    return this.api.deleteItemOption(id).subscribe((response: any) => {
       if (response.status === 200) {
-        this.toastr.success('Colaborador deletado com sucesso!');
+        this.toastr.success('Item deletado com sucesso!');
       } else {
-        this.toastr.error('Erro ao deletar colaborador!');
+        this.toastr.error('Erro ao deletar item!');
       }
     });
   }

@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.util.*;
 
 @Entity
-@Table(name = "TB_COFFEE")
+@Table(name = "TB_COFFEE_DAY")
 public class CoffeeDay implements Serializable {
 
     @Serial
@@ -16,54 +16,36 @@ public class CoffeeDay implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long coffeeDayId;
 
     @Column(name = "coffeeDate", nullable = false)
     private LocalDate coffeeDate;
 
-    @ManyToMany
-    @JoinTable(name = "tb_user_coffee",
-            joinColumns = @JoinColumn(name = "coffee_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private Set<User> users = new HashSet<>();
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "coffeeDay", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ItemAssignment> itemAssignments;
 
-    @ManyToMany
-    @JoinTable(name = "tb_coffee_item",
-            joinColumns = @JoinColumn(name = "coffee_id"),
-            inverseJoinColumns = @JoinColumn(name = "item_id"))
-    private List<ItemOption> items = new ArrayList<>();
-
-
-    public Long getId() {
-        return id;
+    public Long getCoffeeDayId() {
+        return coffeeDayId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setCoffeeDayId(Long coffeeDayId) {
+        this.coffeeDayId = coffeeDayId;
     }
 
     public LocalDate getCoffeeDate() {
         return coffeeDate;
     }
 
-    public void setCoffeDate(LocalDate coffeDate) {
-        this.coffeeDate = coffeDate;
+    public void setCoffeeDate(LocalDate coffeeDate) {
+        this.coffeeDate = coffeeDate;
     }
 
-    public Set<User> getUsers() {
-        return users;
+    public List<ItemAssignment> getItemAssignments() {
+        return itemAssignments;
     }
 
-    public void setUsers(Set<User> users) {
-        this.users = users;
-    }
-
-    public List<ItemOption> getItems() {
-        return items;
-    }
-
-    public void setItems(List<ItemOption> items) {
-        this.items = items;
+    public void setItemAssignments(List<ItemAssignment> itemAssignments) {
+        this.itemAssignments = itemAssignments;
     }
 
     @Override
@@ -71,21 +53,20 @@ public class CoffeeDay implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CoffeeDay coffeDay = (CoffeeDay) o;
-        return Objects.equals(id, coffeDay.id);
+        return Objects.equals(coffeeDayId, coffeDay.coffeeDayId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(coffeeDayId);
     }
 
     @Override
     public String toString() {
-        return "CoffeDay{" +
-                "id=" + id +
+        return "CoffeeDay{" +
+                "coffeeDayId=" + coffeeDayId +
                 ", coffeeDate=" + coffeeDate +
-                ", users=" + users +
-                ", items=" + items +
+                ", itemAssignments=" + itemAssignments +
                 '}';
     }
 }

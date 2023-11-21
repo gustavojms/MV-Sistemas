@@ -1,27 +1,21 @@
-<mat-card class="p-10">
-  <div class="flex justify-between mb-4">
+<div class="w-full mt-10 px-10">
+  <div class="flex justify-between">
     <h1 class="text-2xl font-bold">Coffee Day</h1>
-    <button  class="mt-2 bg-custom-teal p-2 px-2 rounded-lg text-white font-medium" (click)="openNewCoffeeDay()">
-      Adicionar novo dia
+    <button class="text-white font-medium bg-custom-teal h-10 w-52 rounded-md" (click)="openNewCoffeeDay()">
+      Adicionar novo Coffee Day
     </button>
   </div>
+  </div>
 
-  <table mat-table [dataSource]="coffeeDatasource">
+  <mat-card class="p-10">
+  <table
+    mat-table
+    [dataSource]="coffeeDatasource"
+    class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg w-full"
+  >
     <ng-container matColumnDef="date">
       <th mat-header-cell *matHeaderCellDef>Dia do café</th>
-      <td mat-cell *matCellDef="let row" (click)="openCoffeeDetails(row)" class="cursor-pointer hover:bg-custom-pink">{{ row.coffeeDate }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef>Ações</th>
-      <td mat-cell *matCellDef="let row">
-        <button mat-icon-button color="primary">
-          <mat-icon>edit</mat-icon>
-        </button>
-        <button mat-icon-button color="warn">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </td>
+      <td mat-cell *matCellDef="let row" (click)="openCoffeeDetails(row)" class="h-20 cursor-pointer hover:bg-custom-teal hover:text-white transition-all ease-in-out">{{ row.coffeeDate }}</td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

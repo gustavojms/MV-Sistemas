@@ -1,6 +1,7 @@
 package com.mv.models;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -11,13 +12,14 @@ public class ItemAssignment implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long itemAssignmentId;
 
     @Column(name = "has_brought_item")
-    private boolean hasBroughtItem;
+    @ColumnDefault("0")
+    private Boolean hasBroughtItem;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "id_user")
     private User user;
 
     @ManyToOne
@@ -28,12 +30,12 @@ public class ItemAssignment implements Serializable {
     @JoinColumn(name = "coffeeDay_id")
     private CoffeeDay coffeeDay;
 
-    public Long getId() {
-        return id;
+    public Long getItemAssignmentId() {
+        return itemAssignmentId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setItemAssignmentId(Long itemAssignmentId) {
+        this.itemAssignmentId = itemAssignmentId;
     }
 
     public boolean isHasBroughtItem() {
@@ -73,18 +75,18 @@ public class ItemAssignment implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ItemAssignment that = (ItemAssignment) o;
-        return Objects.equals(id, that.id);
+        return Objects.equals(itemAssignmentId, that.itemAssignmentId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(itemAssignmentId);
     }
 
     @Override
     public String toString() {
         return "ItemAssignment{" +
-                "id=" + id +
+                "itemAssignmentId=" + itemAssignmentId +
                 ", hasBroughtItem=" + hasBroughtItem +
                 ", user=" + user +
                 ", itemOption=" + itemOption +

@@ -1,14 +1,28 @@
-  <mat-toolbar class="bg-black">
-    <span class="text-3xl">Desafio Unidac</span>
-    <span class="example-spacer"></span>
-    <nav>
-      <ul class="flex gap-2 text-base">
-        <li>
-          <a routerLink="/" routerLinkActive="active">Página inicial</a>
-        </li>
-        <li>
-          <a routerLink="/coffeeday" routerLinkActive="active">Coffee Day</a>
-        </li>
-      </ul>
-    </nav>
-  </mat-toolbar>
+<header class="flex p-4 items-center bg-inherit">
+  <a routerLink="/" routerLinkActive="active">
+    <img
+      class="ml-10"
+      src="https://www.mv.com.br/assets/img/layout/logo.svg"
+      alt="Logo da empresa MV Sistemas"
+    />
+  </a>
+  <span class="example-spacer"></span>
+  <nav>
+    <ul class="flex gap-8 px-8 text-base">
+      <li>
+        <a routerLink="/" routerLinkActive="active">Página inicial</a>
+      </li>
+      <li>
+        <a routerLink="/colaboradores" routerLinkActive="active"
+          >Colaboradores</a
+        >
+      </li>
+      <li>
+        <a routerLink="/coffeeday" routerLinkActive="active">Coffee Day</a>
+      </li>
+      <li>
+        <a routerLink="/itens" routerLinkActive="active">Itens</a>
+      </li>
+    </ul>
+  </nav>
+</header>

@@ -26,11 +26,11 @@ public interface ItemOptionRepository extends JpaRepository<ItemOption, Long> {
 
     @Transactional
     @Modifying
-    @Query(value = "UPDATE TB_ITEM_OPTION SET ITEM = :item WHERE ID = :itemId", nativeQuery = true)
+    @Query(value = "UPDATE TB_ITEM_OPTION SET ITEM = :item WHERE ITEM_OPTION_ID = :itemId", nativeQuery = true)
     void updateItemOption(@Param("itemId") Long itemId, @Param("item") String item);
 
     @Transactional
     @Modifying
-    @Query(value = "DELETE FROM TB_ITEM_OPTION WHERE ID = :itemId", nativeQuery = true)
+    @Query(value = "DELETE FROM TB_ITEM_OPTION WHERE ITEM_OPTION_ID = :itemId", nativeQuery = true)
     void deleteItemOption(@Param("itemId") Long itemId);
 }

@@ -16,8 +16,8 @@ import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    @Query(value = "SELECT ID, NAME, CPF FROM TB_USER", nativeQuery = true)
-    List<Object[]> findAllUsers();
+    @Query(value = "SELECT * FROM TB_USER", nativeQuery = true)
+    List<User> findAllUsers();
 
     @Transactional
     @Modifying
@@ -30,10 +30,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Transactional
     @Modifying
-    @Query(value = "UPDATE TB_USER SET NAME = :NAME, CPF = :CPF WHERE id = :userId", nativeQuery = true)
+    @Query(value = "UPDATE TB_USER SET NAME = :NAME, CPF = :CPF WHERE USER_ID = :userId", nativeQuery = true)
     void updateUser(@Param("userId") Long userId, @Param("NAME") String name, @Param("CPF") String cpf);
 
     @Modifying
-    @Query(value = "DELETE FROM TB_USER WHERE ID = :userId", nativeQuery = true)
+    @Query(value = "DELETE FROM TB_USER WHERE USER_ID = :userId", nativeQuery = true)
     void deleteUser(Long userId);
 }

@@ -31,7 +31,7 @@ public class CoffeeDayService {
 
         this.coffeDayRepository.insertCoffeeDate(coffeeDayDto.getCoffeeDate());
         CoffeeDay coffeeDay = this.coffeDayRepository.findByCoffeeDate(coffeeDayDto.getCoffeeDate());
-        return new CoffeeDayDto(coffeeDay.getId(), coffeeDay.getCoffeeDate());
+        return new CoffeeDayDto(coffeeDay.getCoffeeDayId(), coffeeDay.getCoffeeDate());
     }
 
     @Transactional
@@ -41,7 +41,7 @@ public class CoffeeDayService {
 
         for (CoffeeDay coffeeDay : coffeeDays) {
             CoffeeDayDto coffeeDayDto = new CoffeeDayDto();
-            coffeeDayDto.setId(coffeeDay.getId());
+            coffeeDayDto.setId(coffeeDay.getCoffeeDayId());
             coffeeDayDto.setCoffeeDate(coffeeDay.getCoffeeDate());
             coffeeDaysDto.add(coffeeDayDto);
         }

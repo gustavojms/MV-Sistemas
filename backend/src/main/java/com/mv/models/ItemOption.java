@@ -1,10 +1,10 @@
 package com.mv.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -16,17 +16,20 @@ public class ItemOption implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long itemOptionId;
 
     @Column(name = "item", nullable = false)
     private String item;
 
-    public Long getId() {
-        return id;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "itemOption", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ItemAssignment> itemAssignments;
+
+    public Long getItemOptionId() {
+        return itemOptionId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setItemOptionId(Long itemOptionId) {
+        this.itemOptionId = itemOptionId;
     }
 
     public String getItem() {
@@ -35,6 +38,14 @@ public class ItemOption implements Serializable {
 
     public void setItem(String item) {
         this.item = item;
+    }
+
+    public List<ItemAssignment> getItemAssignments() {
+        return itemAssignments;
+    }
+
+    public void setItemAssignments(List<ItemAssignment> itemAssignments) {
+        this.itemAssignments = itemAssignments;
     }
 
     @Override
@@ -53,8 +64,9 @@ public class ItemOption implements Serializable {
     @Override
     public String toString() {
         return "ItemOption{" +
-                "id=" + id +
+                "itemOptionId=" + itemOptionId +
                 ", item='" + item + '\'' +
+                ", itemAssignments=" + itemAssignments +
                 '}';
     }
 }

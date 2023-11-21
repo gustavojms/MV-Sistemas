@@ -1,3 +1,32 @@
-table {
-  width: 100%;
+.mat-mdc-card {
+  box-shadow: none;
+}
+
+.mat-mdc-table {
+  background-color: #fcfcfc;
+  width: 80%;
+}
+
+.mat-column-date {
+  padding-left: 10px;
+  width: 150px !important;
+  text-align: center;
+}
+
+.mat-column-actions {
+  padding-right: 20px;
+  width: 100px;
+  align-items: center;
+}
+
+.mat-icon {
+  color: #67829D;
+}
+
+.mat-mdc-header-row {
+  font-family: 'Radio Canada', sans-serif;
+}
+
+.mat-mdc-row {
+  font-family: 'Radio Canada', sans-serif;
 }

@@ -17,7 +17,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrl: './coffee-day.component.css'
 })
 export class CoffeeDayComponent implements AfterViewInit {
-  displayedColumns: string[] = ['date', 'actions'];
+  displayedColumns: string[] = ['date'];
   coffeeDatasource: any;
 
   constructor(private api: CoffeeDayService, public dialog: MatDialog, private route: Router) { }

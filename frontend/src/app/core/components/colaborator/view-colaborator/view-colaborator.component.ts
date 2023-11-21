@@ -7,8 +7,9 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { EditColaboratorComponent } from '../edit-colaborator/edit-colaborator.component';
 import { ToastrService } from 'ngx-toastr';
 import {MatCardModule} from '@angular/material/card';
-import { ConfirmDeleteComponent } from '../../confirm-delete/confirm-delete.component';
+import { ConfirmDeleteComponent } from '../../item-option/confirm-delete/confirm-delete.component';
 import { AddColaboratorComponent } from '../add-colaborator/add-colaborator.component';
+import { ConfirmDeleteColaboratorComponent } from '../confirm-delete/confirm-delete.component';
 
 @Component({
   selector: 'app-view-colaborator',
@@ -52,17 +53,16 @@ export class ViewColaboratorComponent implements AfterViewInit {
   }
 
   confirmDelete(data: any) {
-    const dialog = this.dialog.open(ConfirmDeleteComponent, {
+    const dialog = this.dialog.open(ConfirmDeleteColaboratorComponent, {
       data: {
         name: data.name,
-        cpf: data.cpf,
         userId: data.id,
       }
     });
 
     dialog.afterClosed().subscribe((result) => {
       if (result) {
-        console.log(result)
+        this.ngAfterViewInit();
       }
     });
   }

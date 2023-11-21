@@ -6,6 +6,7 @@ import com.mv.repositories.ItemOptionRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,12 +22,20 @@ public class ItemOptionService {
     public ItemOptionDto insertItemOption(String item) {
         itemOptionRepository.insertItemOption(item);
         ItemOption itemOption = itemOptionRepository.searchItemOption(item);
-        return new ItemOptionDto(itemOption.getId(), itemOption.getItem());
+        return new ItemOptionDto(itemOption.getItemOptionId(), itemOption.getItem());
     }
 
     @Transactional
-    public List<ItemOption> searchAllItemsOptions() {
-        return this.itemOptionRepository.searchAllItemsOptions();
+    public List<ItemOptionDto> searchAllItemsOptions() {
+        List<ItemOption> results = itemOptionRepository.searchAllItemsOptions();
+        List<ItemOptionDto> items = new ArrayList<>();
+        for (ItemOption itemOption : results) {
+            ItemOptionDto itemOptionDto = new ItemOptionDto();
+            itemOptionDto.setId(itemOption.getItemOptionId());
+            itemOptionDto.setItem(itemOption.getItem());
+            items.add(itemOptionDto);
+        }
+        return items;
     }
 
     @Transactional

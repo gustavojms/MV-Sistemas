@@ -28,7 +28,7 @@ public class ItemOptionController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ItemOption>> getAllItemsOptions() {
+    public ResponseEntity<List<ItemOptionDto>> getAllItemsOptions() {
         return ResponseEntity.ok(itemOptionService.searchAllItemsOptions());
     }
 
