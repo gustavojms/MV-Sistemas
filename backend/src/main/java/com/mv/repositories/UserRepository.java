@@ -21,8 +21,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Transactional
     @Modifying
-    @Query(value = "INSERT INTO TB_USER (NAME, CPF) VALUES(:NAME, :CPF)", nativeQuery = true)
-    void insertUser(@Param("NAME") String name, @Param("CPF") String cpf);
+    @Query(value = "INSERT INTO TB_USER (NAME, CPF) VALUES(:name, :cpf)", nativeQuery = true)
+    void insertUser(@Param("name") String name, @Param("cpf") String cpf);
 
     @Transactional
     @Query(value = "SELECT * FROM TB_USER WHERE CPF = :cpf", nativeQuery = true)

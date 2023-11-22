@@ -63,7 +63,7 @@ public class ItemAssignmentService {
             itemAssignmentDataDto.setUserId(Long.parseLong(objects[0].toString()));
             itemAssignmentDataDto.setCpf(objects[1].toString());
             itemAssignmentDataDto.setUsername(objects[2].toString());
-            itemAssignmentDataDto.setHasBroughtItem(objects[3].toString().equals("1"));
+            itemAssignmentDataDto.setHasBroughtItem(objects[3].toString().equals("true"));
             assignmentDto.add(itemAssignmentDataDto);
         }
 
