@@ -26,14 +26,14 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Transactional
     @Query(value = "SELECT * FROM TB_USER WHERE CPF = :cpf", nativeQuery = true)
-    User findByCpf(String cpf);
+    User findByCpf(@Param("cpf") String cpf);
 
     @Transactional
     @Modifying
-    @Query(value = "UPDATE TB_USER SET NAME = :NAME, CPF = :CPF WHERE USER_ID = :userId", nativeQuery = true)
-    void updateUser(@Param("userId") Long userId, @Param("NAME") String name, @Param("CPF") String cpf);
+    @Query(value = "UPDATE TB_USER SET NAME = :name, CPF = :cpf WHERE USER_ID = :userId", nativeQuery = true)
+    void updateUser(@Param("userId") Long userId, @Param("name") String name, @Param("cpf") String cpf);
 
     @Modifying
     @Query(value = "DELETE FROM TB_USER WHERE USER_ID = :userId", nativeQuery = true)
-    void deleteUser(Long userId);
+    void deleteUser(@Param("userId") Long userId);
 }
