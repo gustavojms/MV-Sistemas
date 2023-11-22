@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,7 @@ export class ColaboratorService {
 
   postNewColaborator(data: any) {
     return this.http.post(
-      'http://localhost:8080/user',
+      `${environment.apiUrl}/user`,
       {
         name: data.name,
         cpf: data.cpf,
@@ -23,14 +24,14 @@ export class ColaboratorService {
   }
 
   getColaborators() {
-    return this.http.get('http://localhost:8080/user', {
+    return this.http.get(`${environment.apiUrl}/user`, {
       observe: 'response',
     });
   }
 
   editColaborator(userId: any, data: any) {
     return this.http.put(
-      `http://localhost:8080/user/${userId}`,
+      `${environment.apiUrl}/user/${userId}`,
       {
         name: data.name,
         cpf: data.cpf,
@@ -42,7 +43,7 @@ export class ColaboratorService {
   }
 
   deleteColaborator(userId: any) {
-    return this.http.delete(`http://localhost:8080/user/${userId}`, {
+    return this.http.delete(`${environment.apiUrl}/user/${userId}`, {
       observe: 'response',
       responseType: 'text',
     });

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -10,13 +11,13 @@ export class CoffeeDayService {
   }
 
   getCoffeeDays() {
-    return this.http.get('http://localhost:8080/coffee-day', {
+    return this.http.get(`${environment.apiUrl}/coffee-day`, {
       observe: 'response',
     });
   }
 
   getCoffeeDayById(id: number) {
-    return this.http.get(`http://localhost:8080/coffee-day/${id}`, {
+    return this.http.get(`${environment.apiUrl}/coffee-day/${id}`, {
       observe: 'response',
     });
   }
@@ -24,7 +25,7 @@ export class CoffeeDayService {
   postNewCoffeeDay(data: any) {
     console.log(data);
     return this.http.post(
-      'http://localhost:8080/coffee-day',
+      `${environment.apiUrl}/coffee-day`,
       {
         coffeeDate: data,
       },
@@ -36,7 +37,7 @@ export class CoffeeDayService {
 
   assignColaboratorToCoffeeDay(data: any) {
     return this.http.post(
-      'http://localhost:8080/item-assignment',
+      `${environment.apiUrl}/item-assignment`,
       {
         userId: data.userId,
         coffeeDayId: data.coffeeDayId,
@@ -47,33 +48,33 @@ export class CoffeeDayService {
   }
 
   getAllColaborators() {
-    return this.http.get('http://localhost:8080/user', {
+    return this.http.get(`${environment.apiUrl}/user`, {
       observe: 'response',
     });
   }
 
   getAllItems() {
-    return this.http.get('http://localhost:8080/item-option', {
+    return this.http.get(`${environment.apiUrl}/item-option`, {
       observe: 'response',
     });
   }
 
   getColaboratorsAndItemsByCoffeeDayId(id: number) {
-    return this.http.get(`http://localhost:8080/item-assignment/${id}`, {
+    return this.http.get(`${environment.apiUrl}/item-assignment/${id}`, {
       observe: 'response',
     });
   }
 
   getCoffeeDetailsByCoffeeDayId(coffeeDayId: number) {
     return this.http.get(
-      `http://localhost:8080/item-assignment/items/${coffeeDayId}`,
+      `${environment.apiUrl}/item-assignment/items/${coffeeDayId}`,
       { observe: 'response' }
     );
   }
 
   updateBroughtStatus(data: any) {
     return this.http.put(
-      `http://localhost:8080/item-assignment`,
+      `${environment.apiUrl}/item-assignment`,
       {
         userId: data.userId,
         coffeeDayId: data.coffeeDayId,

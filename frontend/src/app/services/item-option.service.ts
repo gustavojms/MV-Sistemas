@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,7 @@ export class ItemOptionService {
 
   postNewItemOption(data: any) {
     return this.http.post(
-      'http://localhost:8080/item-option',
+      `${environment.apiUrl}/item-option`,
       {
         item: data.item,
       },
@@ -22,14 +23,14 @@ export class ItemOptionService {
   }
 
   getItemOptions() {
-    return this.http.get('http://localhost:8080/item-option', {
+    return this.http.get(`${environment.apiUrl}/item-option`, {
       observe: 'response',
     });
   }
 
   editItemOption(itemOptionId: any, data: any) {
     return this.http.put(
-      `http://localhost:8080/item-option/${itemOptionId}`,
+      `${environment.apiUrl}/item-option/${itemOptionId}`,
       {
         item: data.item,
       },
@@ -40,14 +41,14 @@ export class ItemOptionService {
   } 
 
   deleteItemOption(itemOptionId: any) {
-    return this.http.delete(`http://localhost:8080/item-option/${itemOptionId}`, {
+    return this.http.delete(`${environment.apiUrl}/item-option/${itemOptionId}`, {
       observe: 'response',
       responseType: 'text',
     });
   }
 
   getItemOptionByName(itemOptionName: string) {
-    return this.http.get(`http://localhost:8080/item-option/${itemOptionName}`, {
+    return this.http.get(`${environment.apiUrl}/item-option/${itemOptionName}`, {
       observe: 'response',
     });
   }
