@@ -1,7 +1,6 @@
 .coffee-img {
-  width: 700px;
   position: absolute;
-  top: 15%;
+  bottom: 3%;
   left: 10%;
 }
 .mat-headline-1 {
