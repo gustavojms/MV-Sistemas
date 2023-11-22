@@ -44,10 +44,8 @@ public class ItemAssignmentService {
     }
 
     @Transactional
-    public ItemAssignmentDto updateItemAssignment(Long userId, Long coffeeDayId, boolean hasBroughtItem) {
+    public void updateItemAssignment(Long userId, Long coffeeDayId, boolean hasBroughtItem) {
         itemAssignmentRepository.updateItemAssignment(userId, coffeeDayId, hasBroughtItem);
-        List<ItemAssignment> itemAssignment = itemAssignmentRepository.findItemAssignmentByUserIdAndCoffeeDayId(userId, coffeeDayId);
-        return new ItemAssignmentDto(itemAssignment.get(0).getUser().getUserId(), itemAssignment.get(0).getCoffeeDay().getCoffeeDayId(), Collections.singletonList(itemAssignment.get(0).getItemOption().getItemOptionId()), itemAssignment.get(0).isHasBroughtItem());
     }
 
     @Transactional

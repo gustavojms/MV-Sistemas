@@ -15,7 +15,7 @@ public class ItemAssignment implements Serializable {
     private Long itemAssignmentId;
 
     @Column(name = "has_brought_item")
-    @ColumnDefault("0")
+    @ColumnDefault("false")
     private Boolean hasBroughtItem;
 
     @ManyToOne

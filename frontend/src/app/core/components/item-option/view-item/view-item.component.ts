@@ -40,7 +40,7 @@ export class ViewItemComponent implements AfterViewInit {
   openEditItemOption(data: any): any {
     const dialogRef = this.dialog.open(EditItemComponent, {
       data: {
-        itemOptionId: data.itemOptionId,
+        itemOptionId: data.id,
         item: data.item,
       },
     });

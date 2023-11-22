@@ -64,7 +64,7 @@ export class CoffeeDayService {
     });
   }
 
-  getCoffeeDetailsByCoffeeDayIdAndUserId(coffeeDayId: number) {
+  getCoffeeDetailsByCoffeeDayId(coffeeDayId: number) {
     return this.http.get(
       `http://localhost:8080/item-assignment/items/${coffeeDayId}`,
       { observe: 'response' }

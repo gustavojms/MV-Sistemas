@@ -30,10 +30,10 @@ public class ItemAssignmentController {
     }
 
     @PutMapping
-    public ResponseEntity<ItemAssignmentDto> updateItemAssignment(
+    public ResponseEntity<String> updateItemAssignment(
             @RequestBody ItemAssignmentDto itemAssignmentDto) {
-        ItemAssignmentDto itemAssignment = itemAssignmentService.updateItemAssignment(itemAssignmentDto.getUserId(), itemAssignmentDto.getCoffeeDayId(), itemAssignmentDto.isHasBroughtItem());
-        return ResponseEntity.status(HttpStatus.OK).body(itemAssignment);
+        itemAssignmentService.updateItemAssignment(itemAssignmentDto.getUserId(), itemAssignmentDto.getCoffeeDayId(), itemAssignmentDto.isHasBroughtItem());
+        return ResponseEntity.status(HttpStatus.OK).body("O item foi atualizado com sucesso!");
     }
 
     @DeleteMapping

@@ -84,10 +84,11 @@ export class CoffeeDetailsComponent implements AfterViewInit {
       .getColaboratorsAndItemsByCoffeeDayId(id)
       .subscribe((response: any) => {
         this.datasource = response.body;
+        console.log(this.datasource)
       });
 
     const coffeeItems = this.api
-      .getCoffeeDetailsByCoffeeDayIdAndUserId(id)
+      .getCoffeeDetailsByCoffeeDayId(id)
       .subscribe((response: any) => {
         this.coffeeItems = response.body;
         this.filteredCoffeeItems = this.filterCoffeeItemsByUserId(this.userId)
@@ -111,7 +112,6 @@ export class CoffeeDetailsComponent implements AfterViewInit {
         coffeeDayId: this.data?.id,
       },
     });
-    console.log(this.items)
 
     dialogRef.afterClosed().subscribe(() => {
       this.ngAfterViewInit();
